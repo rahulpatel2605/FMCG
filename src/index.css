@@ -1,0 +1,123 @@
+/* Aethera Design System - Ultra-Premium Glassmorphic CSS Configuration */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Tailwind directives mapped to vanilla styles for compatibility */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  
+  /* Primary HSL Gradients & Accent Glow Colors */
+  --bg-deep-space: linear-gradient(135deg, #07090e 0%, #0d121f 50%, #151c2e 100%);
+  --cyan-accent: 190, 100%, 50%; /* #00F2FE */
+  --violet-accent: 270, 100%, 60%; /* #7F00FF */
+  --emerald-accent: 150, 84%, 48%; /* #10b981 */
+}
+
+/* Custom Reset & Scrollbars */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-deep-space);
+  background-attachment: fixed;
+  color: #f1f5f9;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Customized Premium Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.01);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsla(var(--cyan-accent), 0.3);
+}
+
+/* Glassmorphism Card styles */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border-radius: 1rem;
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(6, 182, 212, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(6, 182, 212, 0.05);
+  transform: translateY(-2px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom Micro-animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Pulse Neon Alert Indicator */
+@keyframes pulseNeon {
+  0%, 100% {
+    box-shadow: 0 0 4px hsla(var(--cyan-accent), 0.3), 0 0 12px hsla(var(--cyan-accent), 0.1);
+  }
+  50% {
+    box-shadow: 0 0 10px hsla(var(--cyan-accent), 0.6), 0 0 20px hsla(var(--cyan-accent), 0.3);
+  }
+}
+
+.pulse-neon {
+  animation: pulseNeon 2s infinite ease-in-out;
+}
+
+/* Success Neon particle effect classes */
+@keyframes celebrationConfetti {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.animate-confetti {
+  animation: celebrationConfetti 1s ease-out forwards;
+}

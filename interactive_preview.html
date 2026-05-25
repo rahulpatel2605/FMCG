@@ -1,0 +1,3014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aethera - Next-Gen Premium FMCG Dealer & Inventory Platform">
+  <title>Aethera - Premium FMCG Dealer Hub</title>
+  
+  <!-- Premium Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --bg-deep-space: linear-gradient(135deg, #07090e 0%, #0d121f 50%, #151c2e 100%);
+      --cyan-glow: #00F2FE;
+      --violet-glow: #7F00FF;
+      --emerald-glow: #10b981;
+      --amber-glow: #f59e0b;
+      --rose-glow: #f43f5e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-deep-space);
+      background-attachment: fixed;
+      color: #f1f5f9;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: var(--font-display);
+    }
+
+    /* Customized Premium Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.01);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 242, 254, 0.3);
+    }
+
+    /* Glassmorphic Panels */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+      border-radius: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-panel-hover:hover {
+      border-color: rgba(0, 242, 254, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(0, 242, 254, 0.05);
+      transform: translateY(-2px);
+    }
+
+    /* Layout structure */
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Navigation */
+    aside {
+      width: 260px;
+      background: rgba(4, 6, 12, 0.85);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-col: justify-between;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 30;
+      flex-direction: column;
+    }
+
+    .sidebar-header {
+      padding: 1.5rem;
+      border-b: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.75rem;
+      background: linear-gradient(135deg, var(--cyan-glow), var(--violet-glow));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #fff, #cbd5e1, #a5f3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-sub {
+      font-size: 10px;
+      color: var(--cyan-glow);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 1px;
+    }
+
+    nav {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex: 1;
+    }
+
+    .nav-header {
+      padding: 0 0.75rem;
+      margin-bottom: 0.5rem;
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #64748b;
+      letter-spacing: 1.5px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      color: #94a3b8;
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.875rem;
+      transition: all 0.25s ease;
+      position: relative;
+      border-left: 3px solid transparent;
+    }
+
+    .nav-btn i {
+      font-size: 1.1rem;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.03);
+      border-left-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-btn:hover i {
+      transform: scale(1.1);
+    }
+
+    .nav-btn.active {
+      color: var(--cyan-glow);
+      background: linear-gradient(to right, rgba(0, 242, 254, 0.08), rgba(127, 0, 255, 0.03));
+      border-left-color: var(--cyan-glow);
+      font-weight: 550;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      background: linear-gradient(135deg, var(--cyan-glow), var(--violet-glow));
+      color: #07090e;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      box-shadow: 0 2px 8px rgba(0, 242, 254, 0.2);
+    }
+
+    .sidebar-footer {
+      padding: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .dealer-card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem;
+      border-radius: 0.75rem;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .dealer-avatar {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      background: linear-gradient(135deg, var(--violet-glow), #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #fff;
+      font-size: 0.85rem;
+    }
+
+    .dealer-name {
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .dealer-id {
+      font-size: 10px;
+      color: #64748b;
+    }
+
+    .sync-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      color: #475569;
+      padding: 0 0.5rem;
+    }
+
+    .sync-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+      margin-right: 4px;
+      box-shadow: 0 0 8px #10b981;
+      animation: ping 1.5s infinite;
+    }
+
+    /* Main Viewport */
+    main {
+      flex: 1;
+      padding-left: 260px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Global Header */
+    header {
+      height: 70px;
+      background: rgba(7, 9, 14, 0.4);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      sticky: top;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+    }
+
+    .node-text {
+      color: #64748b;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hub-badge {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--emerald-glow);
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(16, 185, 129, 0.1);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .bell-btn {
+      width: 2.25rem;
+      height: 2.25rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 0.75rem;
+      color: #94a3b8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: all 0.25s;
+    }
+
+    .bell-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .bell-dot {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 8px;
+      height: 8px;
+      background: var(--cyan-glow);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--cyan-glow);
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .user-avatar {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.75rem;
+      background: linear-gradient(135deg, var(--cyan-glow), #4338ca);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #07090e;
+      font-size: 0.85rem;
+    }
+
+    .user-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .content-area {
+      flex: 1;
+      padding: 2rem;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding-bottom: 5rem;
+    }
+
+    /* Views animations */
+    .view-container {
+      display: none;
+      animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .view-container.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* View Header */
+    .view-title-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .view-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .view-subtitle {
+      font-size: 0.875rem;
+      color: #94a3b8;
+      margin-top: 0.15rem;
+    }
+
+    /* Dashboard UI details */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .kpi-card {
+      position: relative;
+      overflow: hidden;
+      padding: 1.25rem;
+    }
+
+    .kpi-radial {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      filter: blur(40px);
+      z-index: -1;
+      opacity: 0.15;
+    }
+
+    .kpi-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .kpi-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .kpi-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .kpi-value {
+      font-size: 1.625rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .kpi-sub {
+      font-size: 0.7rem;
+      color: #64748b;
+      margin-top: 0.25rem;
+    }
+
+    .kpi-footer {
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+
+    .kpi-trend-up {
+      color: var(--emerald-glow);
+    }
+
+    .kpi-trend-down {
+      color: var(--rose-glow);
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 1024px) {
+      .insight-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .insight-card {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .insight-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .insight-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .insight-sub {
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 0.5rem;
+      padding: 0.25rem 0.65rem;
+      font-size: 10px;
+      color: #cbd5e1;
+    }
+
+    .live-pulse {
+      width: 6px;
+      height: 6px;
+      background: var(--cyan-glow);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--cyan-glow);
+      animation: ping 1s infinite;
+    }
+
+    /* Custom SVGs and graphical illustrations */
+    .chart-container {
+      width: 100%;
+      height: 220px;
+      position: relative;
+    }
+
+    .chart-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* CSS Horizontal stock bars */
+    .meter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .meter-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .meter-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+    }
+
+    .meter-label {
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .meter-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .meter-value {
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .meter-bar-bg {
+      height: 6px;
+      background: #0f172a;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .meter-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 1s ease-in-out;
+    }
+
+    /* Live terminal panel */
+    .terminal-panel {
+      padding: 1.25rem;
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .terminal-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-family: monospace;
+      font-size: 0.75rem;
+    }
+
+    .terminal-row {
+      display: flex;
+      align-items: start;
+      gap: 0.75rem;
+      padding: 0.65rem;
+      border-radius: 0.5rem;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      transition: background 0.25s;
+    }
+
+    .terminal-row:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .term-meta {
+      font-size: 10px;
+      color: #475569;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .term-led {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+
+    .term-led.success { background: var(--emerald-glow); box-shadow: 0 0 6px var(--emerald-glow); }
+    .term-led.warning { background: var(--amber-glow); box-shadow: 0 0 6px var(--amber-glow); }
+    .term-led.danger { background: var(--rose-glow); box-shadow: 0 0 6px var(--rose-glow); }
+
+    .term-msg {
+      color: #94a3b8;
+      flex: 1;
+    }
+
+    .term-tag {
+      font-size: 9px;
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px solid #1e293b;
+      color: #64748b;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Inventory View Details */
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .search-container {
+      position: relative;
+      width: 320px;
+    }
+
+    .search-container i {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #475569;
+      font-size: 0.875rem;
+    }
+
+    .search-input {
+      width: 100%;
+      background: #090e17;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      padding: 0.65rem 1rem 0.65rem 2.25rem;
+      color: #fff;
+      font-size: 0.75rem;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .search-input:focus {
+      border-color: rgba(0, 242, 254, 0.5);
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
+    }
+
+    .tab-container {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: #64748b;
+      padding: 0.45rem 0.85rem;
+      border-radius: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .tab-btn.active {
+      background: rgba(0, 242, 254, 0.08);
+      border-color: rgba(0, 242, 254, 0.3);
+      color: var(--cyan-glow);
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .prod-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .prod-banner {
+      height: 6px;
+      width: 100%;
+    }
+
+    .prod-content {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .prod-brand {
+      font-size: 9px;
+      font-weight: 800;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .prod-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      margin-top: 0.15rem;
+    }
+
+    .prod-sku {
+      font-family: monospace;
+      font-size: 9px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: #94a3b8;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .prod-details {
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .prod-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+    }
+
+    .prod-row-label {
+      color: #475569;
+    }
+
+    .prod-row-val {
+      color: #cbd5e1;
+      font-weight: 550;
+    }
+
+    .stock-meter-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .stock-percent-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: #475569;
+    }
+
+    .stock-cap-bg {
+      height: 4px;
+      background: #090e17;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .stock-cap-fill {
+      height: 100%;
+      border-radius: 99px;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.35rem;
+      width: fit-content;
+    }
+
+    .status-badge.healthy {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.1);
+      color: var(--emerald-glow);
+    }
+
+    .status-badge.warning {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.1);
+      color: var(--amber-glow);
+    }
+
+    .status-badge.danger {
+      background: rgba(244, 63, 94, 0.08);
+      border: 1px solid rgba(244, 63, 94, 0.1);
+      color: var(--rose-glow);
+      animation: pulse-border 2s infinite;
+    }
+
+    @keyframes pulse-border {
+      0%, 100% { border-color: rgba(244, 63, 94, 0.1); }
+      50% { border-color: rgba(244, 63, 94, 0.4); }
+    }
+
+    .scheme-badge {
+      background: rgba(0, 242, 254, 0.03);
+      border: 1px solid rgba(0, 242, 254, 0.1);
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      display: flex;
+      gap: 0.35rem;
+      align-items: start;
+    }
+
+    .scheme-badge i {
+      color: var(--cyan-glow);
+      font-size: 0.75rem;
+      margin-top: 2px;
+    }
+
+    .scheme-badge-title {
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--cyan-glow);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .scheme-badge-desc {
+      font-size: 10px;
+      color: #94a3b8;
+      line-height: 1.25;
+      margin-top: 1px;
+    }
+
+    .prod-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .prod-price-label {
+      font-size: 0.65rem;
+      color: #475569;
+    }
+
+    .prod-price {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .prod-footer {
+      padding: 0.85rem 1rem;
+      background: rgba(4, 6, 12, 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .qty-input-container {
+      width: 70px;
+    }
+
+    .qty-input {
+      width: 100%;
+      background: #090e17;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.5rem;
+      padding: 0.45rem 0.25rem;
+      color: #fff;
+      font-size: 0.75rem;
+      text-align: center;
+      outline: none;
+    }
+
+    .qty-input:focus {
+      border-color: rgba(0, 242, 254, 0.3);
+    }
+
+    .dispatch-btn {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.55rem 0.75rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      transition: all 0.25s;
+    }
+
+    .dispatch-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .dispatch-btn.in-cart {
+      background: rgba(16, 185, 129, 0.08);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: var(--emerald-glow);
+    }
+
+    .dispatch-btn.in-cart:hover {
+      background: rgba(16, 185, 129, 0.12);
+    }
+
+    .soq-nudge {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      background: linear-gradient(135deg, var(--violet-glow), #4f46e5);
+      border: 1px solid rgba(127, 0, 255, 0.3);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      box-shadow: 0 4px 10px rgba(127, 0, 255, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      animation: nudge-pulse 2s infinite;
+    }
+
+    @keyframes nudge-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+
+    /* Checkout & Cart details */
+    .cart-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .cart-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cart-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cart-item {
+      padding: 1.25rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cart-accent {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+    }
+
+    .cart-main-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-left: 0.5rem;
+    }
+
+    .cart-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .cart-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .cart-specs {
+      font-size: 10px;
+      color: #64748b;
+    }
+
+    .cart-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cart-qty-btn {
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 0.35rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: #94a3b8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .cart-qty-btn:hover {
+      background: rgba(255, 255, 255, 0.07);
+      color: #fff;
+    }
+
+    .cart-qty-val {
+      width: 2.25rem;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .cart-del-btn {
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 0.35rem;
+      background: rgba(244, 63, 94, 0.08);
+      border: 1px solid rgba(244, 63, 94, 0.1);
+      color: var(--rose-glow);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      margin-left: 0.5rem;
+    }
+
+    .cart-del-btn:hover {
+      background: rgba(244, 63, 94, 0.15);
+    }
+
+    .cart-line-total {
+      text-align: right;
+    }
+
+    .cart-total-label {
+      font-size: 10px;
+      color: #475569;
+      font-weight: bold;
+    }
+
+    .cart-total-val {
+      font-size: 0.875rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .cart-item-scheme-row {
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      padding-top: 0.75rem;
+      padding-left: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .scheme-applied-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.1);
+      color: var(--emerald-glow);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 10px;
+      font-weight: 700;
+      width: fit-content;
+    }
+
+    .scheme-nudge-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: rgba(127, 0, 255, 0.05);
+      border: 1px solid rgba(127, 0, 255, 0.1);
+      color: #a78bfa;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      width: fit-content;
+      transition: all 0.25s;
+    }
+
+    .scheme-nudge-btn:hover {
+      background: rgba(127, 0, 255, 0.1);
+      color: #fff;
+    }
+
+    .scheme-nudge-unlock {
+      font-size: 8px;
+      background: var(--violet-glow);
+      color: #fff;
+      padding: 1px 4px;
+      border-radius: 3px;
+      margin-left: 4px;
+    }
+
+    /* Ledger Summary Widget */
+    .ledger-card {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .ledger-header {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+    }
+
+    .ledger-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-size: 0.75rem;
+    }
+
+    .ledger-row {
+      display: flex;
+      justify-content: space-between;
+      color: #94a3b8;
+    }
+
+    .ledger-row-val {
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+
+    .ledger-row.discount {
+      color: var(--emerald-glow);
+      font-weight: 700;
+    }
+
+    .shipping-nudge {
+      font-size: 9px;
+      color: #94a3b8;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+    }
+
+    .shipping-nudge b {
+      color: #fff;
+    }
+
+    .free-gifts-container {
+      background: rgba(0, 242, 254, 0.03);
+      border: 1px solid rgba(0, 242, 254, 0.1);
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .free-gifts-title {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--cyan-glow);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+      padding-bottom: 0.35rem;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .free-gift-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+
+    .free-gift-badge {
+      font-size: 9px;
+      background: rgba(0, 242, 254, 0.1);
+      color: var(--cyan-glow);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    .ledger-total-row {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .ledger-total-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .ledger-total-val {
+      font-size: 1.35rem;
+      font-weight: 900;
+      background: linear-gradient(to right, #fff, #e2e8f0, #a5f3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--cyan-glow), var(--violet-glow));
+      color: #07090e;
+      border: none;
+      padding: 0.85rem;
+      border-radius: 0.75rem;
+      font-weight: 800;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.15);
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .checkout-btn:hover {
+      box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3);
+      transform: scale(1.005);
+    }
+
+    .checkout-btn:active {
+      transform: scale(0.99);
+    }
+
+    /* Schemes View Details */
+    .schemes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .scheme-card {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scheme-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .scheme-card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .scheme-card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.75rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scheme-card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .scheme-card-expiry {
+      font-size: 9px;
+      background: #090e17;
+      color: #94a3b8;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 2px 8px;
+      border-radius: 99px;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      white-space: nowrap;
+    }
+
+    .scheme-card-desc {
+      font-size: 0.75rem;
+      color: #cbd5e1;
+      font-weight: 300;
+      line-height: 1.4;
+      margin-bottom: 1.25rem;
+    }
+
+    .scheme-card-rule {
+      padding: 0.75rem 1rem;
+      background: rgba(9, 14, 23, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      border-radius: 0.75rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: start;
+      font-size: 0.75rem;
+    }
+
+    .scheme-card-rule-title {
+      font-size: 8px;
+      font-weight: 800;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .scheme-card-rule-val {
+      color: #f1f5f9;
+      margin-top: 2px;
+    }
+
+    .scheme-card-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .scheme-benefit-title {
+      font-size: 9px;
+      color: #64748b;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .scheme-benefit-val {
+      font-size: 0.875rem;
+      font-weight: 800;
+      color: var(--emerald-glow);
+      margin-top: 1px;
+    }
+
+    .claim-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.25s;
+    }
+
+    .claim-btn:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Floating Toast Alerts */
+    .toast-container {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .toast {
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      cursor: pointer;
+      animation: toast-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes toast-in {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .toast-content {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+    }
+
+    .toast-led {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .toast-led.success { background: var(--emerald-glow); }
+    .toast-led.warning { background: var(--amber-glow); }
+    .toast-led.info { background: var(--cyan-glow); }
+
+    .toast-text {
+      color: #cbd5e1;
+    }
+
+    .toast-dismiss {
+      font-size: 9px;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+    }
+
+    /* Success Overlay Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 6, 12, 0.8);
+      backdrop-filter: blur(20px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .success-modal {
+      max-width: 420px;
+      width: 100%;
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      animation: modal-zoom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes modal-zoom {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .success-icon-container {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 1.25rem;
+      background: linear-gradient(135deg, var(--cyan-glow), var(--violet-glow));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+      animation: success-pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes success-pulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(0, 242, 254, 0.3), 0 0 20px rgba(0, 242, 254, 0.1); }
+      50% { box-shadow: 0 0 20px rgba(0, 242, 254, 0.6), 0 0 30px rgba(0, 242, 254, 0.3); }
+    }
+
+    .success-icon-container i {
+      font-size: 1.75rem;
+      color: #07090e;
+    }
+
+    .success-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .success-sub {
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+
+    .success-sub span {
+      font-family: monospace;
+      color: var(--cyan-glow);
+      font-weight: 700;
+    }
+
+    .receipt-box {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.75rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      color: #64748b;
+    }
+
+    .receipt-row-val {
+      color: #cbd5e1;
+      font-weight: bold;
+    }
+
+    .receipt-row.bold {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 0.65rem;
+      font-size: 0.85rem;
+    }
+
+    .receipt-row.bold .receipt-row-val {
+      color: var(--cyan-glow);
+    }
+
+    .logistics-card {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: rgba(0, 242, 254, 0.03);
+      border: 1px solid rgba(0, 242, 254, 0.08);
+      border-radius: 0.75rem;
+      text-align: left;
+    }
+
+    .logistics-card i {
+      font-size: 1.15rem;
+      color: var(--cyan-glow);
+    }
+
+    .logistics-title {
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--cyan-glow);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .logistics-desc {
+      font-size: 10px;
+      color: #cbd5e1;
+      margin-top: 2px;
+      line-height: 1.25;
+    }
+
+    .success-dismiss-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--cyan-glow), var(--violet-glow));
+      color: #07090e;
+      border: none;
+      padding: 0.85rem;
+      border-radius: 0.75rem;
+      font-weight: 800;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+    }
+
+    .success-dismiss-btn:hover {
+      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.25);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside>
+      <div class="sidebar-header">
+        <div class="brand-icon">
+          <i class="fa-solid fa-arrow-trend-up text-slate-950"></i>
+        </div>
+        <div>
+          <div class="brand-title">AETHERA</div>
+          <div class="brand-sub">FMCG Portal</div>
+        </div>
+      </div>
+
+      <nav>
+        <div class="nav-header">Dealer Console</div>
+        <button class="nav-btn active" onclick="switchView('dashboard')">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-btn" onclick="switchView('inventory')">
+          <i class="fa-solid fa-cubes"></i>
+          <span>Inventory Hub</span>
+        </button>
+        <button class="nav-btn" onclick="switchView('order')" id="cart-nav-btn">
+          <i class="fa-solid fa-shopping-cart"></i>
+          <span>Order Cart</span>
+          <span class="nav-badge" id="cart-badge-qty" style="display: none;">0</span>
+        </button>
+        <button class="nav-btn" onclick="switchView('schemes')">
+          <i class="fa-solid fa-tags"></i>
+          <span>Active Schemes</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="dealer-card">
+          <div class="dealer-avatar">RD</div>
+          <div>
+            <div class="dealer-name">Rahul Distributors</div>
+            <div class="dealer-id">ID: DEL-584992</div>
+          </div>
+        </div>
+        <div class="sync-status">
+          <span>v1.0.0 Stable</span>
+          <span><span class="sync-dot"></span>Sync Active</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main>
+      <!-- Global Top Header -->
+      <header>
+        <div class="header-left">
+          <i class="fa-solid fa-database text-cyan-400"></i>
+          <span class="node-text">Live Node Network: Active &bull;</span>
+          <span class="hub-badge">Secondary Logistics Hub</span>
+        </div>
+
+        <div class="header-right">
+          <button class="bell-btn">
+            <i class="fa-solid fa-bell"></i>
+            <span class="bell-dot"></span>
+          </button>
+          <div style="height: 1.75rem; width: 1px; background: rgba(255,255,255,0.1);"></div>
+          <div class="user-profile">
+            <div class="user-avatar">RA</div>
+            <span class="user-name">Rahul Amin</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="content-area">
+        
+        <!-- DASHBOARD VIEW -->
+        <div id="view-dashboard" class="view-container active">
+          <div class="view-title-container">
+            <div>
+              <h2 class="view-title">Executive Telemetry</h2>
+              <p class="view-subtitle">Real-time dealer supply metrics and operations dashboard.</p>
+            </div>
+            <button class="checkout-btn" style="width: auto; padding: 0.5rem 1rem;" onclick="switchView('order')">
+              <i class="fa-solid fa-bolt"></i> Quick Reorder
+            </button>
+          </div>
+
+          <div class="kpi-grid">
+            <div class="kpi-card glass-panel glass-panel-hover">
+              <div class="kpi-radial" style="background: var(--cyan-glow);"></div>
+              <div class="kpi-header">
+                <span class="kpi-label">Inventory Value</span>
+                <div class="kpi-icon"><i class="fa-solid fa-boxes-stacked text-cyan-400"></i></div>
+              </div>
+              <h3 class="kpi-value" id="kpi-inv-value">₹18,295.00</h3>
+              <p class="kpi-sub">Total stock cases: <span id="kpi-inv-cases" class="text-slate-300 font-semibold">1,663</span> cases</p>
+              <div class="kpi-footer kpi-trend-up">
+                <i class="fa-solid fa-arrow-trend-up" style="margin-right: 4px;"></i> +4.2% from last week
+              </div>
+            </div>
+
+            <div class="kpi-card glass-panel glass-panel-hover">
+              <div class="kpi-radial" style="background: var(--emerald-glow);"></div>
+              <div class="kpi-header">
+                <span class="kpi-label">Supply Health</span>
+                <div class="kpi-icon"><i class="fa-solid fa-heart-pulse text-emerald-400"></i></div>
+              </div>
+              <h3 class="kpi-value" id="kpi-supply-health">75%</h3>
+              <p class="kpi-sub" id="kpi-supply-sub">2 items below threshold level</p>
+              <div class="kpi-footer" style="color: #64748b;">
+                <i class="fa-solid fa-wave-square" style="margin-right: 4px;"></i> Stockout Risk: Low
+              </div>
+            </div>
+
+            <div class="kpi-card glass-panel glass-panel-hover">
+              <div class="kpi-radial" style="background: var(--rose-glow);"></div>
+              <div class="kpi-header">
+                <span class="kpi-label">Active Schemes</span>
+                <div class="kpi-icon"><i class="fa-solid fa-gift text-rose-400"></i></div>
+              </div>
+              <h3 class="kpi-value">4</h3>
+              <p class="kpi-sub">Promotions active in Delhi region</p>
+              <div class="kpi-footer kpi-trend-up" style="color: var(--cyan-glow); cursor: pointer;" onclick="switchView('schemes')">
+                Explore Schemes Directory &rarr;
+              </div>
+            </div>
+
+            <div class="kpi-card glass-panel glass-panel-hover">
+              <div class="kpi-radial" style="background: var(--amber-glow);"></div>
+              <div class="kpi-header">
+                <span class="kpi-label">Low Stock Warnings</span>
+                <div class="kpi-icon" id="low-stock-led"><i class="fa-solid fa-triangle-exclamation text-rose-400"></i></div>
+              </div>
+              <h3 class="kpi-value" id="kpi-warnings-val">2</h3>
+              <p class="kpi-sub">Items below safety stock buffer</p>
+              <div class="kpi-footer" style="color: var(--amber-glow); cursor: pointer;" onclick="switchView('inventory')">
+                Restock catalog items &rarr;
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts and Analytics row -->
+          <div class="insight-grid">
+            <div class="insight-card glass-panel">
+              <div class="insight-header">
+                <div>
+                  <div class="insight-title">Weekly Secondary Sales Flow</div>
+                  <div class="insight-sub">Dealer distribution trends updated hourly</div>
+                </div>
+                <div class="live-badge">
+                  <span class="live-pulse"></span> Live Feed
+                </div>
+              </div>
+              
+              <!-- Clean SVG Glowing line chart -->
+              <div class="chart-container">
+                <svg class="chart-svg" viewBox="0 0 500 200">
+                  <defs>
+                    <linearGradient id="chart-glow" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.3"></stop>
+                      <stop offset="100%" stop-color="#00F2FE" stop-opacity="0"></stop>
+                    </linearGradient>
+                  </defs>
+                  
+                  <!-- Gridlines -->
+                  <line x1="40" y1="20" x2="480" y2="20" stroke="rgba(255,255,255,0.02)" stroke-width="1"></line>
+                  <line x1="40" y1="65" x2="480" y2="65" stroke="rgba(255,255,255,0.02)" stroke-width="1"></line>
+                  <line x1="40" y1="110" x2="480" y2="110" stroke="rgba(255,255,255,0.02)" stroke-width="1"></line>
+                  <line x1="40" y1="155" x2="480" y2="155" stroke="rgba(255,255,255,0.02)" stroke-width="1"></line>
+                  
+                  <!-- Horizontal axis label lines -->
+                  <text x="15" y="25" fill="#475569" font-size="9" font-family="monospace">₹10k</text>
+                  <text x="15" y="70" fill="#475569" font-size="9" font-family="monospace">₹7.5k</text>
+                  <text x="15" y="115" fill="#475569" font-size="9" font-family="monospace">₹5k</text>
+                  <text x="15" y="160" fill="#475569" font-size="9" font-family="monospace">₹2.5k</text>
+                  
+                  <!-- Trend Gradient Filled Area -->
+                  <path d="M 40,155 L 40,120 L 110,85 L 180,100 L 250,55 L 320,30 L 390,75 L 460,130 L 460,155 Z" fill="url(#chart-glow)"></path>
+                  
+                  <!-- Glowing Trend line path -->
+                  <path d="M 40,120 L 110,85 L 180,100 L 250,55 L 320,30 L 390,75 L 460,130" fill="none" stroke="#00F2FE" stroke-width="3" stroke-linecap="round" filter="drop-shadow(0 2px 8px rgba(0, 242, 254, 0.4))"></path>
+                  
+                  <!-- Graph Points -->
+                  <circle cx="40" cy="120" r="4" fill="#00F2FE" stroke="#07090e" stroke-width="2"></circle>
+                  <circle cx="110" cy="85" r="4" fill="#00F2FE" stroke="#07090e" stroke-width="2"></circle>
+                  <circle cx="180" cy="100" r="4" fill="#00F2FE" stroke="#07090e" stroke-width="2"></circle>
+                  <circle cx="250" cy="55" r="4" fill="#00F2FE" stroke="#07090e" stroke-width="2"></circle>
+                  <circle cx="320" cy="30" r="4" fill="#00F2FE" stroke="#07090e" stroke-width="2"></circle>
+                  <circle cx="390" cy="75" r="4" fill="#00F2FE" stroke="#07090e" stroke-width="2"></circle>
+                  <circle cx="460" cy="130" r="4" fill="#00F2FE" stroke="#07090e" stroke-width="2"></circle>
+                  
+                  <!-- Bottom Days Labels -->
+                  <text x="35" y="180" fill="#64748b" font-size="9">Mon</text>
+                  <text x="105" y="180" fill="#64748b" font-size="9">Tue</text>
+                  <text x="175" y="180" fill="#64748b" font-size="9">Wed</text>
+                  <text x="245" y="180" fill="#64748b" font-size="9">Thu</text>
+                  <text x="315" y="180" fill="#64748b" font-size="9">Fri</text>
+                  <text x="385" y="180" fill="#64748b" font-size="9">Sat</text>
+                  <text x="455" y="180" fill="#64748b" font-size="9">Sun</text>
+                </svg>
+              </div>
+            </div>
+
+            <div class="insight-card glass-panel">
+              <div>
+                <div class="insight-title">Inventory Weight Allocation</div>
+                <div class="insight-sub">Total stock cases by category</div>
+              </div>
+              
+              <!-- CSS Horizontal stock allocation meters -->
+              <div class="meter-list" style="margin-top: 1.5rem;">
+                <div class="meter-row">
+                  <div class="meter-header">
+                    <span class="meter-label"><span class="meter-dot" style="background: #38bdf8;"></span>Beverages</span>
+                    <span class="meter-value" id="meter-bev">360 cs</span>
+                  </div>
+                  <div class="meter-bar-bg"><div class="meter-bar-fill" style="background: #38bdf8; width: 65%;"></div></div>
+                </div>
+
+                <div class="meter-row">
+                  <div class="meter-header">
+                    <span class="meter-label"><span class="meter-dot" style="background: #f59e0b;"></span>Snacks</span>
+                    <span class="meter-value" id="meter-snc">310 cs</span>
+                  </div>
+                  <div class="meter-bar-bg"><div class="meter-bar-fill" style="background: #f59e0b; width: 55%;"></div></div>
+                </div>
+
+                <div class="meter-row">
+                  <div class="meter-header">
+                    <span class="meter-label"><span class="meter-dot" style="background: #e11d48;"></span>Packaged Foods</span>
+                    <span class="meter-value" id="meter-foods">448 cs</span>
+                  </div>
+                  <div class="meter-bar-bg"><div class="meter-bar-fill" style="background: #e11d48; width: 80%;"></div></div>
+                </div>
+
+                <div class="meter-row">
+                  <div class="meter-header">
+                    <span class="meter-label"><span class="meter-dot" style="background: #a78bfa;"></span>Personal & Cosmetics</span>
+                    <span class="meter-value" id="meter-personal">145 cs</span>
+                  </div>
+                  <div class="meter-bar-bg"><div class="meter-bar-fill" style="background: #a78bfa; width: 35%;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logistics scrolling feed panel -->
+          <div class="glass-panel terminal-panel">
+            <div class="terminal-header">
+              <i class="fa-solid fa-wave-square text-cyan-400" style="margin-right: 6px;"></i>
+              <span>Live System Logs</span>
+              <span class="live-pulse" style="margin-left: auto; width: 6px; height: 6px;"></span>
+            </div>
+            <div class="terminal-feed" id="terminal-feed-logs">
+              <!-- Logs will be populated dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- INVENTORY VIEW -->
+        <div id="view-inventory" class="view-container">
+          <div class="view-title-container">
+            <div>
+              <h2 class="view-title">Dealer Inventory Hub</h2>
+              <p class="view-subtitle">Browse product catalog, review stock levels, and place high-speed secondary dispatch orders.</p>
+            </div>
+          </div>
+
+          <!-- Inventory search and filter toolbar -->
+          <div class="glass-panel toolbar">
+            <div class="search-container">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="inventory-search" placeholder="Search SKU, name, or brand..." class="search-input" onkeyup="filterInventory()">
+            </div>
+
+            <div class="tab-container" id="category-tabs">
+              <button class="tab-btn active" onclick="filterCategory('All', this)">All</button>
+              <button class="tab-btn" onclick="filterCategory('Beverages', this)">Beverages</button>
+              <button class="tab-btn" onclick="filterCategory('Snacks', this)">Snacks</button>
+              <button class="tab-btn" onclick="filterCategory('Packaged Foods', this)">Packaged Foods</button>
+              <button class="tab-btn" onclick="filterCategory('Personal Care', this)">Personal Care</button>
+              <button class="tab-btn" onclick="filterCategory('Cosmetics', this)">Cosmetics</button>
+            </div>
+          </div>
+
+          <!-- Product catalog grid -->
+          <div class="grid-container" id="product-grid">
+            <!-- Dynamic products cards -->
+          </div>
+        </div>
+
+        <!-- ORDER CART VIEW -->
+        <div id="view-order" class="view-container">
+          <div class="view-title-container">
+            <div>
+              <h2 class="view-title">Secondary Order Console</h2>
+              <p class="view-subtitle">Review dispatch details, review active trade discounts, and place bulk orders.</p>
+            </div>
+            <button class="claim-btn" onclick="clearCart()" id="btn-clear-cart" style="display: none; color: var(--rose-glow); border-color: rgba(244,63,94,0.15)">
+              <i class="fa-solid fa-trash-can"></i> Clear Console
+            </button>
+          </div>
+
+          <!-- Cart empty state -->
+          <div id="cart-empty-state" class="glass-panel" style="text-align: center; padding: 5rem 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;">
+            <div class="kpi-icon" style="width: 3.5rem; height: 3.5rem; border-radius: 50%; font-size: 1.25rem;"><i class="fa-solid fa-box-open text-slate-500"></i></div>
+            <div>
+              <h4 style="font-size: 0.95rem; font-weight: 700; color: #94a3b8;">Order cart console is empty.</h4>
+              <p style="font-size: 0.75rem; color: #475569; max-w: 380px; margin-top: 0.25rem; line-height: 1.4;">Browse the Inventory Hub, inspect stock limits, and add products to queue a dispatch delivery.</p>
+            </div>
+          </div>
+
+          <!-- Cart Grid layout -->
+          <div class="cart-grid" id="cart-checkout-layout" style="display: none;">
+            <div class="cart-list" id="cart-items-list">
+              <!-- Cart items populating dynamically -->
+            </div>
+
+            <!-- Ledger cost breakdown -->
+            <div class="glass-panel ledger-card">
+              <div class="ledger-header">Order Ledger</div>
+              
+              <div class="ledger-rows">
+                <div class="ledger-row">
+                  <span>Gross Total (cases)</span>
+                  <span class="ledger-row-val" id="ledger-cases">0 cases</span>
+                </div>
+                <div class="ledger-row">
+                  <span>Gross Value</span>
+                  <span class="ledger-row-val" id="ledger-gross">₹0.00</span>
+                </div>
+                <div class="ledger-row discount" id="ledger-discount-row" style="display: none;">
+                  <span><i class="fa-solid fa-tag"></i> Scheme Discounts</span>
+                  <span id="ledger-discount">-₹0.00</span>
+                </div>
+                <div class="ledger-row">
+                  <span>Logistics Delivery</span>
+                  <span class="ledger-row-val" id="ledger-delivery">₹0.00</span>
+                </div>
+                
+                <div class="shipping-nudge" id="shipping-nudge-box" style="display: none;"></div>
+              </div>
+
+              <!-- Free Gifts Promo Summary in Ledger -->
+              <div class="free-gifts-container" id="ledger-gifts-box" style="display: none;">
+                <div class="free-gifts-title">
+                  <i class="fa-solid fa-gift"></i>
+                  <span>Earned Margins Bonus</span>
+                </div>
+                <div id="ledger-gifts-list" class="space-y-1">
+                  <!-- Gifts listing dynamically -->
+                </div>
+              </div>
+
+              <div class="ledger-total-row">
+                <span class="ledger-total-label">Net Order Value</span>
+                <span class="ledger-total-val" id="ledger-net">₹0.00</span>
+              </div>
+
+              <button class="checkout-btn" onclick="submitOrder()">
+                <i class="fa-solid fa-file-invoice"></i> Dispatch Order
+              </button>
+
+              <p style="font-size: 10px; color: #475569; text-align: center;">Orders process instantly and sync directly to secondary logistics ERP.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SCHEMES DIRECTORY VIEW -->
+        <div id="view-schemes" class="view-container">
+          <div class="view-title-container">
+            <div>
+              <h2 class="view-title">Active Brand Promotions</h2>
+              <p class="view-subtitle">Explore active trade discounts, bonus margins, and volume schemes offered directly by brand manufacturers.</p>
+            </div>
+          </div>
+
+          <div class="schemes-grid" id="schemes-directory-list">
+            <!-- Dynamic schemes list -->
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Fullscreen success modal overlay -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="success-modal glass-panel">
+      <div class="success-icon-container">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <div>
+        <h3 class="success-title">Dispatch Queued Successfully</h3>
+        <p class="success-sub">Order reference <span id="modal-order-id">ORD-984411</span> is sent to distribution nodes.</p>
+      </div>
+
+      <div class="receipt-box">
+        <div class="receipt-row">
+          <span>Cases Ordered</span>
+          <span class="receipt-row-val" id="receipt-cases">0 cs</span>
+        </div>
+        <div class="receipt-row" id="receipt-free-row" style="display: none;">
+          <span class="text-cyan-400 font-semibold"><i class="fa-solid fa-gift mr-1"></i> Bonus Margin Cases</span>
+          <span class="text-cyan-400 font-bold" id="receipt-free-val">+0 cs free</span>
+        </div>
+        <div class="receipt-row" id="receipt-discount-row" style="display: none;">
+          <span class="text-emerald-400">Trade Schemes Saved</span>
+          <span class="text-emerald-400 font-bold" id="receipt-discount-val">-₹0.00</span>
+        </div>
+        <div class="receipt-row bold">
+          <span>Total Dispatched</span>
+          <span class="receipt-row-val" id="receipt-net">₹0.00</span>
+        </div>
+      </div>
+
+      <div class="logistics-card">
+        <i class="fa-solid fa-truck-fast"></i>
+        <div>
+          <div class="logistics-title">Secondary Logistics Status</div>
+          <div class="logistics-desc">Assigned to Node-4 delivery route. Departure scheduled for 08:00 AM.</div>
+        </div>
+      </div>
+
+      <button class="success-dismiss-btn" onclick="closeSuccessModal()">
+        Telemetry Dashboard &nbsp;<i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast system notification container -->
+  <div class="toast-container" id="toast-bin"></div>
+
+  <!-- LOGIC & CONTROLLER ENGINE -->
+  <script>
+    // State Data Setup
+    let products = [
+      {
+        id: 'prod-001',
+        sku: 'BEV-PEP-250',
+        name: 'Pepsi Carbonated Drink',
+        brand: 'PepsiCo',
+        category: 'Beverages',
+        unitSize: '24 x 250ml Cans',
+        price: 18.50,
+        stock: 240,
+        minThreshold: 50,
+        maxCapacity: 500,
+        gradient: 'linear-gradient(135deg, #2563eb, #1e3a8a)',
+        scheme: 'Buy 10 cases, Get 1 free',
+        schemeType: 'buy_x_get_y',
+        schemeConfig: { triggerQty: 10, freeQty: 1 }
+      },
+      {
+        id: 'prod-002',
+        sku: 'SNC-LAY-050',
+        name: 'Lay\'s Classic Salted Chips',
+        brand: 'PepsiCo',
+        category: 'Snacks',
+        unitSize: '40 x 50g Packs',
+        price: 22.00,
+        stock: 310,
+        minThreshold: 60,
+        maxCapacity: 600,
+        gradient: 'linear-gradient(135deg, #eab308, #d97706)',
+        scheme: 'Buy 20 cases, Get 2 free',
+        schemeType: 'buy_x_get_y',
+        schemeConfig: { triggerQty: 20, freeQty: 2 }
+      },
+      {
+        id: 'prod-003',
+        sku: 'PC-COL-150',
+        name: 'Colgate Total Toothpaste',
+        brand: 'Colgate-Palmolive',
+        category: 'Personal Care',
+        unitSize: '12 x 150g Tubes',
+        price: 34.20,
+        stock: 85,
+        minThreshold: 30,
+        maxCapacity: 200,
+        gradient: 'linear-gradient(135deg, #dc2626, #7f1d1d)',
+        scheme: 'Buy 5 cases, Get 1 free',
+        schemeType: 'buy_x_get_y',
+        schemeConfig: { triggerQty: 5, freeQty: 1 }
+      },
+      {
+        id: 'prod-004',
+        sku: 'FO-ORE-120',
+        name: 'Oreo Double Stuf Biscuits',
+        brand: 'Mondelēz International',
+        category: 'Packaged Foods',
+        unitSize: '24 x 120g Packs',
+        price: 28.80,
+        stock: 28, // LOW STOCK
+        minThreshold: 40,
+        maxCapacity: 250,
+        gradient: 'linear-gradient(135deg, #0369a1, #172554)',
+        scheme: '10% volume discount above 15 cases',
+        schemeType: 'percentage_discount',
+        schemeConfig: { triggerQty: 15, discountPercent: 10 }
+      },
+      {
+        id: 'prod-005',
+        sku: 'COS-NIV-250',
+        name: 'Nivea Deep Impact Body Wash',
+        brand: 'Beiersdorf',
+        category: 'Cosmetics',
+        unitSize: '12 x 250ml Bottles',
+        price: 45.60,
+        stock: 45,
+        minThreshold: 20,
+        maxCapacity: 150,
+        gradient: 'linear-gradient(135deg, #1e3a8a, #0f172a)',
+        scheme: '5% off on orders above 10 cases',
+        schemeType: 'percentage_discount',
+        schemeConfig: { triggerQty: 10, discountPercent: 5 }
+      },
+      {
+        id: 'prod-006',
+        sku: 'BEV-REB-250',
+        name: 'Red Bull Energy Drink',
+        brand: 'Red Bull GmbH',
+        category: 'Beverages',
+        unitSize: '24 x 250ml Cans',
+        price: 48.00,
+        stock: 120,
+        minThreshold: 40,
+        maxCapacity: 300,
+        gradient: 'linear-gradient(135deg, #475569, #0f172a)',
+        scheme: 'Buy 24 cases, Get 2 free',
+        schemeType: 'buy_x_get_y',
+        schemeConfig: { triggerQty: 24, freeQty: 2 }
+      },
+      {
+        id: 'prod-007',
+        sku: 'FO-MAG-280',
+        name: 'Maggi 2-Minute Noodles',
+        brand: 'Nestlé',
+        category: 'Packaged Foods',
+        unitSize: '96 x 70g Singles',
+        price: 19.20,
+        stock: 420,
+        minThreshold: 100,
+        maxCapacity: 800,
+        gradient: 'linear-gradient(135deg, #facc15, #dc2626)',
+        scheme: 'Buy 50 cases, Get 5 free',
+        schemeType: 'buy_x_get_y',
+        schemeConfig: { triggerQty: 50, freeQty: 5 }
+      },
+      {
+        id: 'prod-008',
+        sku: 'COS-LOR-200',
+        name: 'L\'Oreal Paris Elvive Shampoo',
+        brand: 'L\'Oréal',
+        category: 'Cosmetics',
+        unitSize: '12 x 200ml Bottles',
+        price: 58.00,
+        stock: 15, // LOW STOCK
+        minThreshold: 25,
+        maxCapacity: 120,
+        gradient: 'linear-gradient(135deg, #d97706, #451a03)',
+        scheme: 'Buy 10 cases, Get 1 free',
+        schemeType: 'buy_x_get_y',
+        schemeConfig: { triggerQty: 10, freeQty: 1 }
+      }
+    ];
+
+    let schemes = [
+      {
+        id: 'sch-001',
+        title: 'Pepsi Super Scheme',
+        description: 'Order 10 or more cases of Pepsi Carbonated Drink and receive 1 case completely free. Boost your margins this summer!',
+        eligibility: 'Minimum 10 cases of Pepsi (BEV-PEP-250)',
+        benefit: '1 Free case per 10 cases ordered',
+        expiry: 'Expires in 7 days'
+      },
+      {
+        id: 'sch-002',
+        title: 'Oreo Bulk Promotion',
+        description: 'Bulk orders on Oreo Biscuits enjoy massive savings! Get an instant 10% off the product total for orders above 15 cases.',
+        eligibility: 'Minimum 15 cases of Oreo (FO-ORE-120)',
+        benefit: '10% Product Discount',
+        expiry: 'Expires in 15 days'
+      },
+      {
+        id: 'sch-003',
+        title: 'Colgate Special Offer',
+        description: 'Maintain dental supply shelves fully stocked. Order 5 cases of Colgate Total Toothpaste and get 1 extra case free.',
+        eligibility: 'Minimum 5 cases of Colgate (PC-COL-150)',
+        benefit: '1 Free case per 5 cases ordered',
+        expiry: 'Expires in 4 days'
+      },
+      {
+        id: 'sch-004',
+        title: 'Nestle Maggi Mega Deal',
+        description: 'The highest-velocity product in packaging foods! Order 50 cases of Maggi Noodles and get 5 cases completely free.',
+        eligibility: 'Minimum 50 cases of Maggi (FO-MAG-280)',
+        benefit: '5 Free cases per 50 cases ordered',
+        expiry: 'Expires in 20 days'
+      }
+    ];
+
+    let systemLogs = [
+      { id: 1, type: 'order', message: 'Order #ORD-9844 dispatched for delivery', time: '10 mins ago', status: 'success' },
+      { id: 2, type: 'stock', message: 'Oreo Biscuits inventory fell below safety limit', time: '1 hour ago', status: 'warning' },
+      { id: 3, type: 'payment', message: 'Invoice paid for Order #ORD-9812 (₹84,050.00)', time: '3 hours ago', status: 'success' },
+      { id: 4, type: 'stock', message: 'Maggi Noodles restocked (+200 cases)', time: '5 hours ago', status: 'success' },
+      { id: 5, type: 'stock', message: 'L\'Oreal Shampoo stock reached critical alert (15 cases left)', time: 'Yesterday', status: 'danger' }
+    ];
+
+    let cart = []; // Array of { id, qty }
+
+    // Init views on launch
+    window.onload = function() {
+      renderDashboardKPIs();
+      renderTerminalLogs();
+      renderInventoryGrid();
+      renderSchemesDirectory();
+      
+      // Auto toast notices
+      spawnToast('Nivea Body Wash inventory restocked (+50 cs)', 'info');
+      setTimeout(() => {
+        spawnToast('Active Scheme expiring soon: Colgate deal', 'warning');
+      }, 1000);
+    };
+
+    // Formatter
+    function formatCurrency(val) {
+      return '₹' + val.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    // View Switching Router
+    function switchView(viewId) {
+      document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
+      document.getElementById('view-' + viewId).classList.add('active');
+
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      // Find button matching onclick signature
+      const navButtons = Array.from(document.querySelectorAll('.nav-btn'));
+      const activeBtn = navButtons.find(b => b.getAttribute('onclick').includes(viewId));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      if (viewId === 'order') {
+        renderCartConsole();
+      }
+    }
+
+    // Dashboard Engine
+    function renderDashboardKPIs() {
+      const totalVal = products.reduce((acc, curr) => acc + (curr.price * curr.stock), 0);
+      const totalCases = products.reduce((acc, curr) => acc + curr.stock, 0);
+      const lowStock = products.filter(p => p.stock <= p.minThreshold);
+      const health = Math.round(((products.length - lowStock.length) / products.length) * 100);
+
+      document.getElementById('kpi-inv-value').innerText = formatCurrency(totalVal);
+      document.getElementById('kpi-inv-cases').innerText = totalCases.toLocaleString();
+      document.getElementById('kpi-supply-health').innerText = health + '%';
+      
+      const kpiSub = document.getElementById('kpi-supply-sub');
+      const warningsVal = document.getElementById('kpi-warnings-val');
+      const lowStockLed = document.getElementById('low-stock-led');
+      
+      warningsVal.innerText = lowStock.length;
+
+      if (lowStock.length > 0) {
+        kpiSub.innerText = `${lowStock.length} items require reordering alert`;
+        kpiSub.classList.add('text-rose-400');
+        lowStockLed.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-400 animate-pulse"></i>`;
+      } else {
+        kpiSub.innerText = 'All stock levels healthy';
+        kpiSub.classList.remove('text-rose-400');
+        lowStockLed.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i>`;
+      }
+
+      // Update allocation metrics
+      const getSum = (cat) => products.filter(p => p.category === cat).reduce((a, b) => a + b.stock, 0);
+      document.getElementById('meter-bev').innerText = getSum('Beverages') + ' cs';
+      document.getElementById('meter-snc').innerText = getSum('Snacks') + ' cs';
+      document.getElementById('meter-foods').innerText = getSum('Packaged Foods') + ' cs';
+      document.getElementById('meter-personal').innerText = (getSum('Personal Care') + getSum('Cosmetics')) + ' cs';
+    }
+
+    function renderTerminalLogs() {
+      const feed = document.getElementById('terminal-feed-logs');
+      feed.innerHTML = '';
+      systemLogs.forEach(log => {
+        const row = document.createElement('div');
+        row.className = 'terminal-row';
+        row.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="term-meta">${log.time}</span>
+            <span class="term-led ${log.status}"></span>
+          </div>
+          <p class="term-msg">${log.message}</p>
+          <div class="term-tag">${log.type}</div>
+        `;
+        feed.appendChild(row);
+      });
+    }
+
+    // Inventory Catalog Console
+    function renderInventoryGrid() {
+      const grid = document.getElementById('product-grid');
+      grid.innerHTML = '';
+
+      products.forEach(p => {
+        const inCart = cart.find(c => c.id === p.id);
+        const percent = Math.min(100, Math.round((p.stock / p.maxCapacity) * 100));
+        
+        let statusLabel = 'In Stock (Healthy)';
+        let statusClass = 'healthy';
+        let isLow = false;
+
+        if (p.stock <= 0) {
+          statusLabel = 'Out of Stock';
+          statusClass = 'danger';
+          isLow = true;
+        } else if (p.stock <= p.minThreshold) {
+          statusLabel = 'Critical Alert';
+          statusClass = 'danger';
+          isLow = true;
+        } else if (p.stock <= p.minThreshold * 1.5) {
+          statusLabel = 'Low Stock Warning';
+          statusClass = 'warning';
+          isLow = true;
+        }
+
+        // Suggested AI SOQ calculation
+        let soqBadge = '';
+        let initialQty = 1;
+        if (p.stock <= p.minThreshold) {
+          const target = Math.round((p.maxCapacity * 0.7) / 5) * 5;
+          const calculatedSOQ = Math.max(5, target - p.stock);
+          initialQty = calculatedSOQ;
+          soqBadge = `
+            <div class="soq-nudge">
+              <i class="fa-solid fa-robot"></i> Smart SOQ: +${calculatedSOQ} cs
+            </div>
+          `;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'prod-card glass-panel glass-panel-hover';
+        card.setAttribute('data-category', p.category);
+        card.setAttribute('data-name', p.name.toLowerCase() + ' ' + p.brand.toLowerCase() + ' ' + p.sku.toLowerCase());
+        card.innerHTML = `
+          <div class="prod-banner" style="background: ${p.gradient}"></div>
+          ${soqBadge}
+          <div class="prod-content">
+            <div style="display: flex; justify-content: space-between; align-items: start; gap: 8px;">
+              <div>
+                <span class="prod-brand">${p.brand}</span>
+                <h4 class="prod-title">${p.name}</h4>
+              </div>
+              <span class="prod-sku">${p.sku}</span>
+            </div>
+
+            <div class="prod-details">
+              <div class="prod-row">
+                <span class="prod-row-label">Unit Size</span>
+                <span class="prod-row-val">${p.unitSize}</span>
+              </div>
+              <div class="prod-row">
+                <span class="prod-row-label">Stock Available</span>
+                <span class="prod-row-val" style="font-weight: 700; ${p.stock <= p.minThreshold ? 'color: var(--rose-glow);' : ''}">${p.stock} Cases</span>
+              </div>
+              
+              <div class="stock-meter-container">
+                <div class="stock-percent-row">
+                  <span>Fulfillment</span>
+                  <span>${percent}%</span>
+                </div>
+                <div class="stock-cap-bg">
+                  <div class="stock-cap-fill" style="width: ${percent}%; background: ${p.stock <= p.minThreshold ? 'var(--rose-glow)' : p.stock <= p.minThreshold * 1.5 ? 'var(--amber-glow)' : 'var(--emerald-glow)'}"></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <div class="status-badge ${statusClass}">
+                <i class="fa-solid ${statusClass === 'danger' ? 'fa-triangle-exclamation' : statusClass === 'warning' ? 'fa-triangle-exclamation' : 'fa-circle-check'}"></i>
+                ${statusLabel}
+              </div>
+
+              ${p.scheme ? `
+                <div class="scheme-badge">
+                  <i class="fa-solid fa-tag"></i>
+                  <div>
+                    <div class="scheme-badge-title">Active Trade Deal</div>
+                    <div class="scheme-badge-desc">${p.scheme}</div>
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+
+            <div class="prod-price-row">
+              <span class="prod-price-label">Price Per Case</span>
+              <span class="prod-price">${formatCurrency(p.price)}</span>
+            </div>
+          </div>
+
+          <div class="prod-footer">
+            <div class="qty-input-container">
+              <input type="number" min="1" max="${p.stock > 0 ? p.stock : 1}" value="${initialQty}" id="qty-input-${p.id}" class="qty-input" ${p.stock <= 0 ? 'disabled' : ''}>
+            </div>
+            <button class="dispatch-btn ${inCart ? 'in-cart' : ''}" onclick="addToCart('${p.id}')" ${p.stock <= 0 ? 'disabled' : ''}>
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span>${inCart ? `In Cart (${inCart.qty})` : 'Dispatch Cases'}</span>
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function filterInventory() {
+      const q = document.getElementById('inventory-search').value.toLowerCase();
+      const activeTab = document.querySelector('.tab-btn.active').innerText;
+      
+      document.querySelectorAll('.prod-card').forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const matchName = card.getAttribute('data-name').includes(q);
+        const matchCat = activeTab === 'All' || cat === activeTab;
+
+        if (matchName && matchCat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function filterCategory(cat, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterInventory();
+    }
+
+    // Active Schemes console redirect
+    function renderSchemesDirectory() {
+      const bin = document.getElementById('schemes-directory-list');
+      bin.innerHTML = '';
+
+      schemes.forEach(s => {
+        let gradient = 'from-cyan-500/10 to-violet-500/10 border-cyan-400/20 text-cyan-400';
+        let icon = '<i class="fa-solid fa-tags text-cyan-400"></i>';
+        let triggerWord = '';
+
+        if (s.title.includes('Pepsi')) {
+          gradient = 'from-blue-500/10 via-indigo-500/5 to-slate-900 border-blue-500/25 text-blue-400';
+          icon = '<i class="fa-solid fa-sparkles text-blue-400"></i>';
+          triggerWord = 'Pepsi';
+        } else if (s.title.includes('Oreo')) {
+          gradient = 'from-sky-500/10 via-blue-500/5 to-slate-900 border-sky-500/25 text-sky-400';
+          icon = '<i class="fa-solid fa-percent text-sky-400"></i>';
+          triggerWord = 'Oreo';
+        } else if (s.title.includes('Colgate')) {
+          gradient = 'from-rose-500/10 via-red-500/5 to-slate-900 border-rose-500/25 text-rose-400';
+          icon = '<i class="fa-solid fa-gift text-rose-400"></i>';
+          triggerWord = 'Colgate';
+        } else if (s.title.includes('Maggi')) {
+          gradient = 'from-amber-500/10 via-yellow-500/5 to-slate-900 border-amber-500/25 text-amber-400';
+          icon = '<i class="fa-solid fa-gift text-amber-400 animate-pulse"></i>';
+          triggerWord = 'Maggi';
+        }
+
+        const card = document.createElement('div');
+        card.className = `scheme-card glass-panel bg-gradient-to-br ${gradient}`;
+        card.innerHTML = `
+          <div class="scheme-card-header">
+            <div class="scheme-card-title-group">
+              <div class="scheme-card-icon">${icon}</div>
+              <div>
+                <h4 class="scheme-card-title">${s.title}</h4>
+                <span class="brand-sub" style="font-size: 8px; letter-spacing: 0.5px;">${s.id}</span>
+              </div>
+            </div>
+            <span class="scheme-card-expiry"><i class="fa-solid fa-calendar-days"></i> ${s.expiry}</span>
+          </div>
+
+          <p class="scheme-card-desc">${s.description}</p>
+
+          <div class="scheme-card-rule">
+            <div>
+              <div class="scheme-card-rule-title">Eligibility Rule</div>
+              <div class="scheme-card-rule-val">${s.eligibility}</div>
+            </div>
+          </div>
+
+          <div class="scheme-card-footer">
+            <div>
+              <div class="scheme-benefit-title">Margin Benefit</div>
+              <div class="scheme-benefit-val">${s.benefit}</div>
+            </div>
+            <button class="claim-btn" onclick="claimSchemeTrigger('${triggerWord}')">
+              <i class="fa-solid fa-cart-shopping"></i> Order Stock
+            </button>
+          </div>
+        `;
+        bin.appendChild(card);
+      });
+    }
+
+    function claimSchemeTrigger(word) {
+      document.getElementById('inventory-search').value = word;
+      switchView('inventory');
+      filterInventory();
+    }
+
+    // Order Cart Controller & Schemes Engine
+    function addToCart(prodId) {
+      const input = document.getElementById('qty-input-' + prodId);
+      const qty = parseInt(input.value) || 1;
+      const product = products.find(p => p.id === prodId);
+
+      if (qty > product.stock) {
+        alert(`Cannot dispatch ${qty} cases. Only ${product.stock} cases left in stock!`);
+        return;
+      }
+
+      const existing = cart.find(c => c.id === prodId);
+      if (existing) {
+        const total = existing.qty + qty;
+        if (total > product.stock) {
+          alert(`Cumulative amount (${total} cases) exceeds available stock limits!`);
+          return;
+        }
+        existing.qty = total;
+      } else {
+        cart.push({ id: prodId, qty: qty });
+      }
+
+      // Update badge
+      updateCartBadge();
+      
+      // Spawn toast notification
+      spawnToast(`Queued ${qty} cases of ${product.name} to dispatch list`, 'success');
+      
+      // Update inventory card visual state
+      renderInventoryGrid();
+    }
+
+    function updateCartBadge() {
+      const badge = document.getElementById('cart-badge-qty');
+      const count = cart.reduce((a, b) => a + b.qty, 0);
+
+      if (count > 0) {
+        badge.innerText = count;
+        badge.style.display = 'inline-block';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    function updateCartQty(id, newQty) {
+      const prod = products.find(p => p.id === id);
+      if (newQty <= 0) {
+        removeFromCart(id);
+        return;
+      }
+
+      if (newQty > prod.stock) {
+        alert(`Insufficient stocks. Only ${prod.stock} cases left!`);
+        return;
+      }
+
+      const item = cart.find(c => c.id === id);
+      if (item) {
+        item.qty = newQty;
+        renderCartConsole();
+        updateCartBadge();
+      }
+    }
+
+    function removeFromCart(id) {
+      const item = cart.find(c => c.id === id);
+      cart = cart.filter(c => c.id !== id);
+      
+      renderCartConsole();
+      updateCartBadge();
+      renderInventoryGrid();
+
+      if (item) {
+        const prod = products.find(p => p.id === id);
+        spawnToast(`Removed ${prod.name} from dispatch list`, 'info');
+      }
+    }
+
+    function clearCart() {
+      cart = [];
+      updateCartBadge();
+      renderInventoryGrid();
+      renderCartConsole();
+    }
+
+    // High fidelity Scheme Calculator Engine
+    function renderCartConsole() {
+      const list = document.getElementById('cart-items-list');
+      const empty = document.getElementById('cart-empty-state');
+      const layout = document.getElementById('cart-checkout-layout');
+      const clearBtn = document.getElementById('btn-clear-cart');
+
+      if (cart.length === 0) {
+        empty.style.display = 'flex';
+        layout.style.display = 'none';
+        clearBtn.style.display = 'none';
+        return;
+      }
+
+      empty.style.display = 'none';
+      layout.style.display = 'grid';
+      clearBtn.style.display = 'flex';
+      list.innerHTML = '';
+
+      let grossVal = 0;
+      let totalDiscounts = 0;
+      let totalQty = 0;
+      let freeGifts = [];
+
+      cart.forEach(item => {
+        const prod = products.find(p => p.id === item.id);
+        const subtotal = prod.price * item.qty;
+        grossVal += subtotal;
+        totalQty += item.qty;
+
+        let appliedPromo = null;
+        let lineSavings = 0;
+        let earnedFree = 0;
+
+        // Calculate scheme trigger parameters
+        if (prod.schemeType === 'buy_x_get_y' && prod.schemeConfig) {
+          const { triggerQty, freeQty } = prod.schemeConfig;
+          if (item.qty >= triggerQty) {
+            const cycles = Math.floor(item.qty / triggerQty);
+            earnedFree = cycles * freeQty;
+            appliedPromo = `+${earnedFree} Free Case${earnedFree > 1 ? 's' : ''} earned!`;
+            freeGifts.push({
+              name: prod.name + ' (Bonus Case)',
+              qty: earnedFree,
+              sku: prod.sku
+            });
+          }
+        } else if (prod.schemeType === 'percentage_discount' && prod.schemeConfig) {
+          const { triggerQty, discountPercent } = prod.schemeConfig;
+          if (item.qty >= triggerQty) {
+            lineSavings = subtotal * (discountPercent / 100);
+            totalDiscounts += lineSavings;
+            appliedPromo = `${discountPercent}% Volume Discount (${formatCurrency(lineSavings)} saved)`;
+          }
+        }
+
+        // Active scheme triggers proximity reorder nudge
+        let nudgeHtml = '';
+        if (prod.schemeConfig) {
+          const trigger = prod.schemeConfig.triggerQty;
+          if (item.qty < trigger && item.qty >= trigger - 3) {
+            const diff = trigger - item.qty;
+            nudgeHtml = `
+              <div class="scheme-nudge-btn" onclick="updateCartQty('${item.id}', ${trigger})">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>Add ${diff} more cases to trigger active trade discount!</span>
+                <span class="scheme-nudge-unlock">Unlock <i class="fa-solid fa-gift"></i></span>
+              </div>
+            `;
+          }
+        }
+
+        const row = document.createElement('div');
+        row.className = 'cart-item glass-panel';
+        row.innerHTML = `
+          <div class="cart-accent" style="background: ${prod.gradient}"></div>
+          <div class="cart-main-row">
+            <div class="cart-meta">
+              <span class="prod-sku" style="width: fit-content;">${prod.sku}</span>
+              <h4 class="cart-title">${prod.name}</h4>
+              <p class="cart-specs">${prod.unitSize} &bull; ${formatCurrency(prod.price)}/case</p>
+            </div>
+
+            <div class="cart-actions">
+              <button class="cart-qty-btn" onclick="updateCartQty('${item.id}', ${item.qty - 1})"><i class="fa-solid fa-minus"></i></button>
+              <span class="cart-qty-val">${item.qty}</span>
+              <button class="cart-qty-btn" onclick="updateCartQty('${item.id}', ${item.qty + 1})"><i class="fa-solid fa-plus"></i></button>
+              <button class="cart-del-btn" onclick="removeFromCart('${item.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+
+            <div class="cart-line-total">
+              <div class="cart-total-label">Line Total</div>
+              <div class="cart-total-val">${formatCurrency(subtotal)}</div>
+            </div>
+          </div>
+
+          ${(appliedPromo || nudgeHtml) ? `
+            <div class="cart-item-scheme-row">
+              ${appliedPromo ? `<div class="scheme-applied-badge"><i class="fa-solid fa-gift animate-bounce"></i> ${appliedPromo}</div>` : ''}
+              ${nudgeHtml}
+            </div>
+          ` : ''}
+        `;
+        list.appendChild(row);
+      });
+
+      // Update Ledger cost breakdown details
+      const deliveryFee = grossVal > 3000 || grossVal === 0 ? 0 : 150.00;
+      const netTotal = grossVal - totalDiscounts + deliveryFee;
+
+      document.getElementById('ledger-cases').innerText = totalQty + ' cases';
+      document.getElementById('ledger-gross').innerText = formatCurrency(grossVal);
+
+      // Schemes Discount
+      const discRow = document.getElementById('ledger-discount-row');
+      if (totalDiscounts > 0) {
+        discRow.style.display = 'flex';
+        document.getElementById('ledger-discount').innerText = '-' + formatCurrency(totalDiscounts);
+      } else {
+        discRow.style.display = 'none';
+      }
+
+      // Shipping
+      const delField = document.getElementById('ledger-delivery');
+      const shipNudge = document.getElementById('shipping-nudge-box');
+      if (deliveryFee === 0) {
+        delField.innerHTML = `<span style="background: rgba(16, 185, 129, 0.1); color: var(--emerald-glow); border: 1px solid rgba(16, 185, 129, 0.1); font-weight: 700; padding: 1px 8px; border-radius: 4px; font-size: 10px;">Free</span>`;
+        shipNudge.style.display = 'none';
+      } else {
+        delField.innerText = formatCurrency(deliveryFee);
+        const rem = 3000 - grossVal;
+        shipNudge.style.display = 'block';
+        shipNudge.innerHTML = `<i class="fa-solid fa-circle-info" style="color: var(--amber-glow); margin-right: 4px;"></i> Add <b>${formatCurrency(rem)}</b> more to qualify for <span style="color: var(--emerald-glow); font-weight: 700;">Free Delivery</span>!`;
+      }
+
+      // Bonus margin gifts drawer
+      const giftsBox = document.getElementById('ledger-gifts-box');
+      const giftsList = document.getElementById('ledger-gifts-list');
+      if (freeGifts.length > 0) {
+        giftsBox.style.display = 'block';
+        giftsList.innerHTML = '';
+        freeGifts.forEach(g => {
+          const gr = document.createElement('div');
+          gr.className = 'free-gift-row';
+          gr.innerHTML = `
+            <span>${g.name}</span>
+            <span class="free-gift-badge">+${g.qty} Cases Free</span>
+          `;
+          giftsList.appendChild(gr);
+        });
+      } else {
+        giftsBox.style.display = 'none';
+      }
+
+      document.getElementById('ledger-net').innerText = formatCurrency(netTotal);
+    }
+
+    // Checkout action flow
+    function submitOrder() {
+      // Re-run ledger calculations for success summary
+      let grossVal = 0;
+      let totalDiscounts = 0;
+      let totalQty = 0;
+      let freeGifts = [];
+
+      cart.forEach(item => {
+        const prod = products.find(p => p.id === item.id);
+        const subtotal = prod.price * item.qty;
+        grossVal += subtotal;
+        totalQty += item.qty;
+
+        if (prod.schemeType === 'buy_x_get_y' && prod.schemeConfig) {
+          const { triggerQty, freeQty } = prod.schemeConfig;
+          if (item.qty >= triggerQty) {
+            const cycles = Math.floor(item.qty / triggerQty);
+            const freeCount = cycles * freeQty;
+            freeGifts.push({ id: prod.id, qty: freeCount, sku: prod.sku });
+          }
+        } else if (prod.schemeType === 'percentage_discount' && prod.schemeConfig) {
+          const { triggerQty, discountPercent } = prod.schemeConfig;
+          if (item.qty >= triggerQty) {
+            totalDiscounts += subtotal * (discountPercent / 100);
+          }
+        }
+      });
+
+      const deliveryFee = grossVal > 3000 || grossVal === 0 ? 0 : 150.00;
+      const netTotal = grossVal - totalDiscounts + deliveryFee;
+      const totalFreeGifts = freeGifts.reduce((a, b) => a + b.qty, 0);
+
+      // 1. Deplete catalog stocks
+      products.forEach(p => {
+        const cartItem = cart.find(c => c.id === p.id);
+        const freeItem = freeGifts.find(f => f.id === p.id);
+        let dec = 0;
+        if (cartItem) dec += cartItem.qty;
+        if (freeItem) dec += freeItem.qty;
+
+        p.stock = Math.max(0, p.stock - dec);
+      });
+
+      // Update success modal parameters
+      const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('modal-order-id').innerText = orderId;
+      document.getElementById('receipt-cases').innerText = totalQty + ' cs';
+      
+      const freeRow = document.getElementById('receipt-free-row');
+      if (totalFreeGifts > 0) {
+        freeRow.style.display = 'flex';
+        document.getElementById('receipt-free-val').innerText = '+' + totalFreeGifts + ' cs free';
+      } else {
+        freeRow.style.display = 'none';
+      }
+
+      const discRow = document.getElementById('receipt-discount-row');
+      if (totalDiscounts > 0) {
+        discRow.style.display = 'flex';
+        document.getElementById('receipt-discount-val').innerText = '-' + formatCurrency(totalDiscounts);
+      } else {
+        discRow.style.display = 'none';
+      }
+
+      document.getElementById('receipt-net').innerText = formatCurrency(netTotal);
+
+      // Add to System Logs feed
+      const newLog = {
+        id: Date.now(),
+        type: 'order',
+        message: `Order #${orderId} placed for secondary distribution Node-4`,
+        time: 'Just now',
+        status: 'success'
+      };
+      systemLogs.unshift(newLog);
+
+      // Wipe Cart
+      cart = [];
+      updateCartBadge();
+      renderDashboardKPIs();
+      renderTerminalLogs();
+      renderInventoryGrid();
+
+      // Show success modal overlay
+      document.getElementById('checkout-modal').classList.add('active');
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('checkout-modal').classList.remove('active');
+      switchView('dashboard');
+    }
+
+    // System Notification Toasts
+    function spawnToast(text, type) {
+      const bin = document.getElementById('toast-bin');
+      const toast = document.createElement('div');
+      toast.className = 'toast glass-panel';
+      toast.onclick = function() {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      };
+
+      toast.innerHTML = `
+        <div class="toast-content">
+          <span class="toast-led ${type}"></span>
+          <span class="toast-text">${text}</span>
+        </div>
+        <span class="toast-dismiss">Dismiss</span>
+      `;
+      bin.appendChild(toast);
+
+      // Auto clear after 4s
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
